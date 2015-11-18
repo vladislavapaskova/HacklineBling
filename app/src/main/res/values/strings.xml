@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HacklineBlingHH</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="paths">
+        <item>Select Option</item>
+        <item>Anything</item>
+        <item>Arrays</item>
+        <item>LinkedLists</item>
+        <item>BinarySearchTrees</item>
+        <item>StacksAndQueues</item>
+    </string-array>
+    <string name="title_activity_questions">QuestionsActivity</string>
+    <string name="title_activity_check">CheckActivity</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_signup">Signup</string>
+</resources>
