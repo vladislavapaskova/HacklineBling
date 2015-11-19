@@ -68,7 +68,9 @@ public class Database {
 	
 	//function reads in csv and adds it to the hashtable
 	private void transferCSV( File file ){
-		
+		//use reader to read CSV file and retrieve elements
+		//put elements into Problem object
+		//put Problem object inside database 
 	}
 	
 }
