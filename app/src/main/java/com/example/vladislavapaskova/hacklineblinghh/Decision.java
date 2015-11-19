@@ -20,6 +20,7 @@ public class Decision extends AppCompatActivity {
         {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
+	    System.out.println("Vlady");
 
         }
         else
