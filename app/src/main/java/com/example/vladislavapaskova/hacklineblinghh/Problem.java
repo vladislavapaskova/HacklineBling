@@ -26,6 +26,9 @@ public class Problem {
 	
 	//category of the problem (ie. arrays, stacks, bst)
 	protected String cat;
+
+	//link for the source
+	protected String sourceLink;
 	
 	//boolean variables to track user progress
 	protected boolean isCorrect;
@@ -41,12 +44,13 @@ public class Problem {
 	 * @param cat
 	 */
 	
-	public Problem( String que, String ans, String h1, String h2, String cat ){
+	public Problem( String que, String ans, String h1, String h2, String cat, String sourceLink ){
 		this.que = que;
 		this.ans = ans;
 		this.h1 = h1;
 		this.h2 = h2;
 		this.cat = cat;
+		this.sourceLink = sourceLink;
 		this.isCorrect = false;
 		this.isStarred = false;
 		this.isApproved = false;
