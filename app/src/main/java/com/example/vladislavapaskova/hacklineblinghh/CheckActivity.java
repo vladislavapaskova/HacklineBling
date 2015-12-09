@@ -15,10 +15,10 @@ public class CheckActivity extends AppCompatActivity {
     TextView answer;
     TextView user_answer;
 
-    public String value;
-    public String answerI;
+    private String actual_answer;
+    private String answerI;
 
-    QuestionsDatabase qdat;
+    Database qdat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +33,18 @@ public class CheckActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            value = getIntent().getStringExtra("user_answer");
+            actual_answer = getIntent().getStringExtra("user_answer");
             answerI= getIntent().getStringExtra("answer");
         }
 
 
         //set the text into the question field
-        user_answer.setText(value);
+        user_answer.setText(actual_answer);
         user_answer.setMovementMethod(new ScrollingMovementMethod());
 
-        qdat = new QuestionsDatabase();
+        //qdat = new Database();
 
-        answer.setText(qdat.retrieveAnswer(answerI));
+        answer.setText(qdat.retrieveAnswer());
         answer.setMovementMethod(new ScrollingMovementMethod());
 
 

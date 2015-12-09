@@ -1,5 +1,6 @@
+package com.example.vladislavapaskova.hacklineblinghh;
 
-public class LinkedListNode <T>
+class LinkedListNode <T>
 {
 	/* 
 	 * Instance Fields

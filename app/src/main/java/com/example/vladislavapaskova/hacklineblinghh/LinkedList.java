@@ -1,5 +1,6 @@
+package com.example.vladislavapaskova.hacklineblinghh;
 
-public class LinkedList <T> 
+class LinkedList <T>
 {
 /*
  * Instance Fileds

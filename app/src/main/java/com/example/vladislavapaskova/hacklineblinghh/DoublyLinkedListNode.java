@@ -1,3 +1,4 @@
+package com.example.vladislavapaskova.hacklineblinghh;
 
 public class DoublyLinkedListNode<T> extends LinkedListNode<T>
 {

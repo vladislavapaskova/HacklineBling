@@ -1,5 +1,8 @@
+package com.example.vladislavapaskova.hacklineblinghh;
 import java.util.Hashtable;
 import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
 
 public class Database {
 	
@@ -23,6 +26,8 @@ public class Database {
 	private String heapsKey; 
 	private String linkedlistsKey; 
 	private String queuesKey;
+
+    public Problem problemAtHand;
 	
 	
 	public Database(){
@@ -49,6 +54,7 @@ public class Database {
 		queuesKey = "queues";
 		
 		makeHashtable();
+        problemAtHand = null;
 		
 	}
 	
@@ -65,12 +71,105 @@ public class Database {
 		database.put(linkedlistsKey, linkedlistsList);
 		database.put(queuesKey, queuesList);
 	}
-	
-	//function reads in csv and adds it to the hashtable
-	private void transferCSV( File file ){
-		//use reader to read CSV file and retrieve elements
-		//put elements into Problem object
-		//put Problem object inside database 
-	}
-	
+
+    //function reads in csv and adds it to the hashtable
+    private void transferCSV( File file ){
+        //use reader to read CSV file and retrieve elements
+        //put elements into Problem object
+        //put Problem object inside database
+        try {
+            //create a variable for the problem attributes
+            CsvReader problemAtt = new CsvReader("Test2.csv");
+
+            problemAtt.readHeaders();
+
+            while (problemAtt.readRecord())
+            {
+                String cat = problemAtt.get("cat");
+                String que = problemAtt.get("que");
+                String ans = problemAtt.get("ans");
+                String h1 = problemAtt.get("h1");
+                String h2 = problemAtt.get("h2");
+                String sourceLink = problemAtt.get("sourceLink");
+
+                //create the problem
+                Problem problem = new Problem(que, ans, h1, h2, cat, sourceLink);
+                //insert the problem into the database
+                insertProblem(problem);
+            }
+
+            problemAtt.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertProblem(Problem problem)
+    {
+        switch (problem.getCat())
+        {
+            case "arrays":
+                arraysList.insertFirst(problem);
+                break;
+            case "strings":
+                stringsList.insertFirst(problem);
+                break;
+            case "trees":
+                treesList.insertFirst(problem);
+                break;
+            case "stacks":
+                stacksList.insertFirst(problem);
+                break;
+            case "heaps":
+                heapsList.insertFirst(problem);
+                break;
+            case "linkedlists":
+                linkedlistsList.insertFirst(problem);
+                break;
+            case " queues":
+                queuesList.insertFirst(problem);
+                break;
+        }
+
+    }
+    public String retrieve(String str)
+    {
+        switch (str)
+        {
+            case "One":
+                //ANYTHING IN REALITY COME BACK TO IT !!!!
+                problemAtHand = stacksList.getRandom();
+                break;
+            case "Two":
+                problemAtHand = arraysList.getRandom();
+                break;
+            case "Tree":
+                problemAtHand = heapsList.getRandom();
+                break;
+            case "Four":
+                problemAtHand = linkedlistsList.getRandom();
+                break;
+            case "Five":
+                problemAtHand = stacksList.getRandom();
+                break;
+            case "Six":
+                problemAtHand = stringsList.getRandom();
+                break;
+            case "Seven":
+                problemAtHand = treesList.getRandom();
+                break;
+            case "Eight":
+                problemAtHand = queuesList.getRandom();
+                break;
+
+        }
+
+        return problemAtHand.getQue();
+    }
+    public String retrieveAnswer()
+    {
+        return problemAtHand.getAns();
+    }
 }

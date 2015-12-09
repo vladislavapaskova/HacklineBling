@@ -1,10 +1,11 @@
+package com.example.vladislavapaskova.hacklineblinghh;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
-import javax.swing.JList;
 
 public class Reader {
-	
+	/**
 	public static void main(String[] args) throws IOException {
 		
 		ArrayList<String> arr = new ArrayList<String>();
@@ -21,7 +22,7 @@ public class Reader {
 			inputStream = new FileReader("/Users/OnjiBae/Desktop/HacklineBling/test.txt");
 			
 			Scanner scan = new Scanner( inputStream );
-			Database database = new Database();
+			//Database database = new Database();
 			
 			String line = "";
 			
@@ -45,5 +46,6 @@ public class Reader {
 		
 		
 	}
+	 **/
 
 }

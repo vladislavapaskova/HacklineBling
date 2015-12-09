@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class QuestionsActivity extends AppCompatActivity {
 
-    QuestionsDatabase questionDat;
+    Database questionDat;
     public TextView question;
     public EditText answer;
     public Button hint;
@@ -22,6 +22,7 @@ public class QuestionsActivity extends AppCompatActivity {
     //the answer of the user
     public String qAns;
     public String value;
+    private String actualAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class QuestionsActivity extends AppCompatActivity {
         if (extras != null) {
             value = getIntent().getStringExtra("question_num");
         }
-        questionDat = new QuestionsDatabase();
+        questionDat = new Database();
         //set the text into the question field
         question.setText(questionDat.retrieve(value));
 

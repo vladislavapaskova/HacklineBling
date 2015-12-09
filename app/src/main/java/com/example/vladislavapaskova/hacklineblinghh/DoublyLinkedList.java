@@ -1,3 +1,4 @@
+package com.example.vladislavapaskova.hacklineblinghh;
 
 public class DoublyLinkedList<T> extends LinkedList<T> 
 {
@@ -8,26 +9,50 @@ public class DoublyLinkedList<T> extends LinkedList<T>
 	/**
 	 * Insert a new node with data at the head of the list.
 	 **/
+
 	public void insertFirst( T data )
 	{
 		//create a new node
-		DoublyLinkedListNode<T> newNode= new DoublyLinkedListNode<T> (); 
-		//put data at the head 
-		newNode.setData(data); 
+		DoublyLinkedListNode<T> newNode= new DoublyLinkedListNode<T> ();
+		//put data at the head
+		newNode.setData(data);
 		//point it to the old head
 		newNode.setNext(head);
 		//make the old one point back to the new one
-		((DoublyLinkedListNode<T>)head).setPrevious(newNode); 
+		((DoublyLinkedListNode<T>)head).setPrevious(newNode);
 		//set the new node to be the head
 		head=newNode;
 		if(size==0)
 		{
-			tail=head; 
+			tail=head;
 		}
-		//increment the size 
+		//increment the size
 		size++;
 	}
-	
+	public void insertFirstNode( DoublyLinkedListNode<T> newNode )
+	{
+		//point it to the old head
+		newNode.setNext(head);
+		//make the old one point back to the new one
+		((DoublyLinkedListNode<T>)head).setPrevious(newNode);
+		//set the new node to be the head
+		head=newNode;
+		if(size==0)
+		{
+			tail=head;
+		}
+		//increment the size
+		size++;
+	}
+	public T getRandom()
+	{
+		DoublyLinkedListNode<T> newNode = (DoublyLinkedListNode<T>) head;
+		int randomNum = (int)(Math.random()*size);
+		for(int i =0; i<randomNum; i++){
+			newNode= (DoublyLinkedListNode<T>) newNode.getNext();
+		}
+		return newNode.getData();
+	}
 	/**
 	 * Insert a new node with data after currentNode
 	 **/

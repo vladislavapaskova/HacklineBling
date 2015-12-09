@@ -129,6 +129,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(intent);
                 setQuestion=5;
                 break;
+            case 6:
+                intent.putExtra("question_num", "Six");
+                startActivity(intent);
+                setQuestion=6;
+                break;
+            case 7:
+                intent.putExtra("question_num", "Seven");
+                startActivity(intent);
+                setQuestion=5;
+                break;
+            case 8:
+                intent.putExtra("question_num", "Eight");
+                startActivity(intent);
+                setQuestion=5;
+                break;
         }
 
     }

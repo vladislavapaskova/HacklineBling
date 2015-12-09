@@ -5,9 +5,12 @@
         <item>Select Option</item>
         <item>Anything</item>
         <item>Arrays</item>
+        <item>Heaps</item>
         <item>LinkedLists</item>
-        <item>BinarySearchTrees</item>
-        <item>StacksAndQueues</item>
+        <item>Stacks</item>
+        <item>Strings</item>
+        <item>Trees</item>
+        <item>Queues</item>
     </string-array>
     <string name="title_activity_questions">QuestionsActivity</string>
     <string name="title_activity_check">CheckActivity</string>
