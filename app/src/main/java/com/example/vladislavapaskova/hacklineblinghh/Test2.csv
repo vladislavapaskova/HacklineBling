@@ -285,4 +285,77 @@ trees,"Given a binary search tree, write a function kthSmallest to find the kth 
     }
  
     return result;
-}",Use inorder traversal.,Use a stack.,
+}",Use inorder traversal.,Use a stack.,http://www.programcreek.com/2014/07/leetcode-kth-smallest-element-in-a-bst-java/
+trees,"Given an array where elements are sorted in ascending order, convert it to a height balanced BST.","// Definition for binary tree
+class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+ 
+        TreeNode(int x) {
+                val = x;
+        }
+}
+ 
+public class Solution {
+        public TreeNode sortedArrayToBST(int[] num) {
+                if (num.length == 0)
+                        return null;
+ 
+                return sortedArrayToBST(num, 0, num.length - 1);
+        }
+ 
+        public TreeNode sortedArrayToBST(int[] num, int start, int end) {
+                if (start > end)
+                        return null;
+ 
+                int mid = (start + end) / 2;
+                TreeNode root = new TreeNode(num[mid]);
+                root.left = sortedArrayToBST(num, start, mid - 1);
+                root.right = sortedArrayToBST(num, mid + 1, end);
+ 
+                return root;
+        }
+}",Use recursion,The base case would be when ,http://www.programcreek.com/2013/01/leetcode-convert-sorted-array-to-binary-search-tree-java/
+trees,Create a method for a binary tree inorder traversal.,"//Definition for binary tree
+public class TreeNode {
+     int val;
+     TreeNode left;
+     TreeNode right;
+     TreeNode(int x) { val = x; }
+ }
+ 
+public class Solution {
+    public ArrayList<Integer> inorderTraversal(TreeNode root) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+         ArrayList<Integer> lst = new ArrayList<Integer>();
+ 
+        if(root == null)
+            return lst; 
+ 
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        //define a pointer to track nodes
+        TreeNode p = root;
+ 
+        while(!stack.empty() || p != null){
+ 
+            // if it is not null, push to stack
+            //and go down the tree to left
+            if(p != null){
+                stack.push(p);
+                p = p.left;
+ 
+            // if no left child
+            // pop stack, process the node
+            // then let p point to the right
+            }else{
+                TreeNode t = stack.pop();
+                lst.add(t.val);
+                p = t.right;
+            }
+        }
+ 
+        return lst;
+    }
+}",Inorder traversal: left child -> parent -> right child,Use a stack to track nodes,http://www.programcreek.com/2012/12/leetcode-solution-of-binary-tree-inorder-traversal-in-java/
