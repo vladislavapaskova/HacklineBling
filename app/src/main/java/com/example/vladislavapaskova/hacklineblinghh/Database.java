@@ -128,7 +128,7 @@ public class Database {
             case "linkedlists":
                 linkedlistsList.insertFirst(problem);
                 break;
-            case " queues":
+            case "queues":
                 queuesList.insertFirst(problem);
                 break;
         }
