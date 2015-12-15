@@ -140,6 +140,7 @@ public class Database {
         {
             case "One":
                 //ANYTHING IN REALITY COME BACK TO IT !!!!
+                //create getRandomList method
                 problemAtHand = stacksList.getRandom();
                 break;
             case "Two":
@@ -168,8 +169,15 @@ public class Database {
 
         return problemAtHand.getQue();
     }
+
     public String retrieveAnswer()
     {
         return problemAtHand.getAns();
     }
+
+    //retrieveHint1 method
+
+    //retrieveHint2 method
+
+    //retrieveSourceLink method
 }

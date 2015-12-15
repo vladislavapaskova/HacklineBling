@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HacklineBlingHH.iml" filepath="$PROJECT_DIR$/HacklineBlingHH.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HacklineBling.iml" filepath="$PROJECT_DIR$/HacklineBling.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

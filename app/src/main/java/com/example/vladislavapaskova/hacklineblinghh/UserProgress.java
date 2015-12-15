@@ -1,5 +1,7 @@
+package com.example.vladislavapaskova.hacklineblinghh;
 import java.util.HashMap;
 import java.util.ArrayList;
+
 
 public class UserProgress {
 

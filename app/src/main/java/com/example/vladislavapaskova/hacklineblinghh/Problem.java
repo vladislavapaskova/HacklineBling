@@ -101,7 +101,7 @@ public class Problem {
 		this.cat = cat;
 	}
 
-	public boolean isCorrect() {
+	public boolean getCorrect() {
 		return isCorrect;
 	}
 
@@ -109,7 +109,7 @@ public class Problem {
 		this.isCorrect = isCorrect;
 	}
 
-	public boolean isStarred() {
+	public boolean getStarred() {
 		return isStarred;
 	}
 
@@ -117,7 +117,7 @@ public class Problem {
 		this.isStarred = isStarred;
 	}
 
-	public boolean isApproved() {
+	public boolean getApproved() {
 		return isApproved;
 	}
 
