@@ -146,7 +146,7 @@ public class Database {
             case "Two":
                 problemAtHand = arraysList.getRandom();
                 break;
-            case "Tree":
+            case "Three":
                 problemAtHand = heapsList.getRandom();
                 break;
             case "Four":
@@ -175,9 +175,22 @@ public class Database {
         return problemAtHand.getAns();
     }
 
-    //retrieveHint1 method
+    public String retrieveHint1(){
+        if( problemAtHand.getH1() == "" )
+            return "No hint!";
+        else
+            return problemAtHand.getH1();
+    }
 
-    //retrieveHint2 method
+    public String retrieveHint2(){
+        if( problemAtHand.getH2() == "" )
+            return "No hint!";
+        else
+            return problemAtHand.getH1();
+    }
 
-    //retrieveSourceLink method
+    public String retrieveSource(){
+        return problemAtHand.getSourceLink();
+    }
+
 }
