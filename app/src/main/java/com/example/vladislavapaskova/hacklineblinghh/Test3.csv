@@ -1,0 +1,461 @@
+cat,que,ans,h1,h2,sourceLink
+arrays,"Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.","public int findKthLargest(int[] nums, int k) {
+	if (k < 1 || nums == null) {
+		return 0;
+	}
+ 
+	return getKth(nums.length - k +1, nums, 0, nums.length - 1);
+}
+ 
+public int getKth(int k, int[] nums, int start, int end) {
+ 
+	int pivot = nums[end];
+ 
+	int left = start;
+	int right = end;
+ 
+	while (true) {
+ 
+		while (nums[left] < pivot && left < right) {
+			left++;
+		}
+ 
+		while (nums[right] >= pivot && right > left) {
+			right--;
+		}
+ 
+		if (left == right) {
+			break;
+		}
+ 
+		swap(nums, left, right);
+	}
+ 
+	swap(nums, left, end);
+ 
+	if (k == left + 1) {
+		return pivot;
+	} else if (k < left + 1) {
+		return getKth(k, nums, start, left - 1);
+	} else {
+		return getKth(k, nums, left + 1, end);
+	}
+}
+ 
+public void swap(int[] nums, int n1, int n2) {
+	int tmp = nums[n1];
+	nums[n1] = nums[n2];
+	nums[n2] = tmp;
+}","In order to achieve a more optimal solution, try using a quick select approach (similar to quicksort).","Use three pointers (ie. pivot, left, right) to compare and swap.",http://www.programcreek.com/2014/05/leetcode-kth-largest-element-in-an-array-java/
+arrays,"Rotate an array of n elements to the right by k steps. For example, with n = 7 and k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]. How many different ways do you know to solve this problem?","public static void rotate(int[] arr, int order) {
+        order = order % arr.length;
+ 
+        if (arr == null || order < 0) {
+                throw new IllegalArgumentException(""Illegal argument!"");
+        }
+ 
+        //length of first part
+        int a = arr.length - order; 
+ 
+        reverse(arr, 0, a-1);
+        reverse(arr, a, arr.length-1);
+        reverse(arr, 0, arr.length-1);
+ 
+}
+ 
+public static void reverse(int[] arr, int left, int right){
+        if(arr == null || arr.length == 1) 
+                return;
+ 
+        while(left < right){
+                int temp = arr[left];
+                arr[left] = arr[right];
+                arr[right] = temp;
+                left++;
+                right--;
+        }        
+}",First divide the array into 2 parts!,"Then, rotate the first part, second part, then the whole array.",http://www.programcreek.com/2015/03/rotate-array-in-java/
+arrays,"Given two sorted integer arrays A and B, merge B into A as one sorted array. You may assume that A has enough space to hold additional elements from B. The number of elements initialized in A and B are m and n respectively.","public void merge(int A[], int m, int B[], int n) {
+        int i = m - 1;
+        int j = n - 1;
+        int k = m + n - 1;
+ 
+        while (k >= 0) {
+                if (j < 0 || (i >= 0 && A[i] > B[j]))
+                        A[k--] = A[i--];
+                else
+                        A[k--] = B[j--];
+        }
+}","The key to solve this problem is moving element of A and B backwards. If B has some elements left after A is done, also need to handle that case.",The takeaway message from this problem is that the loop condition.,http://www.programcreek.com/2012/12/leetcode-merge-sorted-array-java/
+linkedlists,"Given a linked list, determine if it has a cycle in it.","public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+ 
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+ 
+            if(slow == fast)
+                return true;
+        }
+ 
+        return false;
+    }
+}",Use two pointers.,What happens when the two pointers are pointing to the same node?,http://www.programcreek.com/2012/12/leetcode-linked-list-cycle/
+linkedlists,Write a program to find the node at which the intersection of two singly linked lists begins.,"public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int len1 = 0;
+        int len2 = 0;
+        ListNode p1=headA, p2=headB;
+        if (p1 == null || p2 == null)
+            return null;
+ 
+        while(p1 != null){
+            len1++;
+            p1 = p1.next;
+        }
+        while(p2 !=null){
+            len2++;
+            p2 = p2.next;
+        }
+ 
+        int diff = 0;
+        p1=headA;
+        p2=headB;
+ 
+        if(len1 > len2){
+            diff = len1-len2;
+            int i=0;
+            while(i<diff){
+                p1 = p1.next;
+                i++;
+            }
+        }else{
+            diff = len2-len1;
+            int i=0;
+            while(i<diff){
+                p2 = p2.next;
+                i++;
+            }
+        }
+ 
+        while(p1 != null && p2 != null){
+            if(p1.val == p2.val){
+                return p1;
+            }else{
+ 
+            }
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+ 
+        return null;
+    }
+}",First calculate the length of two lists and find the difference. ,"Then start from the longer list at the diff offset, iterate though 2 lists and find the node.",http://www.programcreek.com/2014/02/leetcode-intersection-of-two-linked-lists-java/
+linkedlists,Reverse a singly linked list recursively.,"public ListNode reverseList(ListNode head) {
+    if(head==null || head.next == null)
+        return head;
+ 
+    //get second node    
+    ListNode second = head.next;
+    //set first's next to be null
+    head.next = null;
+ 
+    ListNode rest = reverseList(second);
+    second.next = head;
+ 
+    return rest;
+}",Initialize a LinkedList node temp to head.next before the recursive call,"After the recursive call, intialize the head to temp.next",http://www.programcreek.com/2014/05/leetcode-reverse-linked-list-java/
+strings,"Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that only one letter can be changed at a time and each intermediate word must exist in the dictionary. ","class WordNode{
+    String word;
+    int numSteps;
+ 
+    public WordNode(String word, int numSteps){
+        this.word = word;
+        this.numSteps = numSteps;
+    }
+}
+ 
+public class Solution {
+    public int ladderLength(String beginWord, String endWord, Set<String> wordDict) {
+        LinkedList<WordNode> queue = new LinkedList<WordNode>();
+        queue.add(new WordNode(beginWord, 1));
+ 
+        wordDict.add(endWord);
+ 
+        while(!queue.isEmpty()){
+            WordNode top = queue.remove();
+            String word = top.word;
+ 
+            if(word.equals(endWord)){
+                return top.numSteps;
+            }
+ 
+            char[] arr = word.toCharArray();
+            for(int i=0; i<arr.length; i++){
+                for(char c='a'; c<='z'; c++){
+                    char temp = arr[i];
+                    if(arr[i]!=c){
+                        arr[i]=c;
+                    }
+ 
+                    String newWord = new String(arr);
+                    if(wordDict.contains(newWord)){
+                        queue.add(new WordNode(newWord, top.numSteps+1));
+                        wordDict.remove(newWord);
+                    }
+ 
+                    arr[i]=temp;
+                }
+            }
+        }
+ 
+        return 0;
+    }
+}",Use a queue to keep track of the words.,Use a BFS approach.,http://www.programcreek.com/2012/12/leetcode-word-ladder/
+strings,"Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.","public class ValidPalindrome {
+	public static boolean isValidPalindrome(String s){
+		if(s==null||s.length()==0) return false;
+ 
+		s = s.replaceAll(""[^a-zA-Z0-9]"", """").toLowerCase();
+		System.out.println(s);
+ 
+		for(int i = 0; i < s.length() ; i++){
+			if(s.charAt(i) != s.charAt(s.length() - 1 - i)){
+				return false;
+			}
+		}
+ 
+		return true;
+	}
+ 
+	public static void main(String[] args) {
+		String str = ""A man, a plan, a canal: Panama"";
+ 
+		System.out.println(isValidPalindrome(str));
+	}
+}","First get rid of all punctuation and capital letters with: s = s.replaceAll(""[^a-zA-Z0-9]"", """").toLowerCase();","Use two pointers, one at the beginning and one at the end.",http://www.programcreek.com/2013/01/leetcode-valid-palindrome-java/
+strings,"Given an array of strings, return all groups of strings that are anagrams.","public List<String> anagrams(String[] strs) {
+    ArrayList<String> result = new ArrayList<String>();
+    if(strs == null || strs.length == 0)
+        return result;
+ 
+    HashMap<String, ArrayList<Integer>> map = new HashMap<String, ArrayList<Integer>>();
+    for(int i=0; i<strs.length; i++){
+        char[] arr = strs[i].toCharArray();
+        Arrays.sort(arr);
+        String t = String.valueOf(arr);
+        if(map.get(t) == null){
+            ArrayList<Integer> l = new ArrayList<Integer>();
+            l.add(i);
+            map.put(t, l);
+        }else{
+            map.get(t).add(i);
+        }
+    }
+ 
+    for(ArrayList<Integer> l: map.values()){
+        if(l.size() > 1){
+            for(Integer i: l){
+                result.add(strs[i]);
+            }
+        }
+    }
+ 
+    return result;
+}","If two strings are anagram to each other, their sorted sequence is the same.",,http://www.programcreek.com/2014/04/leetcode-anagrams-java/
+trees,"Given a binary search tree, write a function kthSmallest to find the kth smallest element in it. (1 ≤ k ≤ BST's total elements)","public int kthSmallest(TreeNode root, int k) {
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+ 
+    TreeNode p = root;
+    int result = 0;
+ 
+    while(!stack.isEmpty() || p!=null){
+        if(p!=null){
+            stack.push(p);
+            p = p.left;
+        }else{
+            TreeNode t = stack.pop();
+            k--;
+            if(k==0)
+                result = t.val;
+            p = t.right;
+        }
+    }
+ 
+    return result;
+}",Use inorder traversal.,Use a stack.,http://www.programcreek.com/2014/07/leetcode-kth-smallest-element-in-a-bst-java/
+trees,"Given an array where elements are sorted in ascending order, convert it to a height balanced BST.","// Definition for binary tree
+class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+ 
+        TreeNode(int x) {
+                val = x;
+        }
+}
+ 
+public class Solution {
+        public TreeNode sortedArrayToBST(int[] num) {
+                if (num.length == 0)
+                        return null;
+ 
+                return sortedArrayToBST(num, 0, num.length - 1);
+        }
+ 
+        public TreeNode sortedArrayToBST(int[] num, int start, int end) {
+                if (start > end)
+                        return null;
+ 
+                int mid = (start + end) / 2;
+                TreeNode root = new TreeNode(num[mid]);
+                root.left = sortedArrayToBST(num, start, mid - 1);
+                root.right = sortedArrayToBST(num, mid + 1, end);
+ 
+                return root;
+        }
+}",Use recursion,The base case would be when ,http://www.programcreek.com/2013/01/leetcode-convert-sorted-array-to-binary-search-tree-java/
+trees,Create a method for a binary tree inorder traversal.,"//Definition for binary tree
+public class TreeNode {
+     int val;
+     TreeNode left;
+     TreeNode right;
+     TreeNode(int x) { val = x; }
+ }
+ 
+public class Solution {
+    public ArrayList<Integer> inorderTraversal(TreeNode root) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+         ArrayList<Integer> lst = new ArrayList<Integer>();
+ 
+        if(root == null)
+            return lst; 
+ 
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        //define a pointer to track nodes
+        TreeNode p = root;
+ 
+        while(!stack.empty() || p != null){
+ 
+            // if it is not null, push to stack
+            //and go down the tree to left
+            if(p != null){
+                stack.push(p);
+                p = p.left;
+ 
+            // if no left child
+            // pop stack, process the node
+            // then let p point to the right
+            }else{
+                TreeNode t = stack.pop();
+                lst.add(t.val);
+                p = t.right;
+            }
+        }
+ 
+        return lst;
+    }
+}",Inorder traversal: left child -> parent -> right child,Use a stack to track nodes,http://www.programcreek.com/2012/12/leetcode-solution-of-binary-tree-inorder-traversal-in-java/
+stacks,"Implement the following operations of a stack using queues.
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+empty() -- Return whether the stack is empty.
+
+","class MyStack {
+    LinkedList<Integer> queue1 = new LinkedList<Integer>();
+    LinkedList<Integer> queue2 = new LinkedList<Integer>();
+ 
+    // Push element x onto stack.
+    public void push(int x) {
+        if(empty()){
+            queue1.offer(x);
+        }else{
+            if(queue1.size()>0){
+                queue2.offer(x);
+                int size = queue1.size();
+                while(size>0){
+                    queue2.offer(queue1.poll());
+                    size--;
+                }
+            }else if(queue2.size()>0){
+                queue1.offer(x);
+                int size = queue2.size();
+                while(size>0){
+                    queue1.offer(queue2.poll());
+                    size--;
+                }
+            }
+        }
+    }
+ 
+    // Removes the element on top of the stack.
+    public void pop() {
+        if(queue1.size()>0){
+            queue1.poll();
+        }else if(queue2.size()>0){
+            queue2.poll();
+        }
+    }
+ 
+    // Get the top element.
+    public int top() {
+       if(queue1.size()>0){
+            return queue1.peek();
+        }else if(queue2.size()>0){
+            return queue2.peek();
+        }
+        return 0;
+    }
+ 
+    // Return whether the stack is empty.
+    public boolean empty() {
+        return queue1.isEmpty() & queue2.isEmpty();
+    }
+}",Use 2 queues,,http://www.programcreek.com/2014/06/leetcode-implement-stack-using-queues-java/
+queues,"Implement the following operations of a queue using stacks.
+
+push(x) -- Push element x to the back of queue.
+pop() -- Removes the element from in front of queue.
+peek() -- Get the front element.
+empty() -- Return whether the queue is empty.","class MyQueue {
+ 
+    Stack<Integer> temp = new Stack<Integer>();
+    Stack<Integer> value = new Stack<Integer>();
+ 
+    // Push element x to the back of queue.
+    public void push(int x) {
+        if(value.isEmpty()){
+            value.push(x);
+        }else{
+            while(!value.isEmpty()){
+                temp.push(value.pop());
+            }
+ 
+            value.push(x);
+ 
+            while(!temp.isEmpty()){
+                value.push(temp.pop());
+            }    
+        }
+    }
+ 
+    // Removes the element from in front of queue.
+    public void pop() {
+        value.pop();
+    }
+ 
+    // Get the front element.
+    public int peek() {
+        return value.peek();
+    }
+ 
+    // Return whether the queue is empty.
+    public boolean empty() {
+        return value.isEmpty();
+    }
+}",,,http://www.programcreek.com/2014/07/leetcode-implement-queue-using-stacks-java/
+heaps,heapsquestion,ansquestion,hint1,hint2,link
