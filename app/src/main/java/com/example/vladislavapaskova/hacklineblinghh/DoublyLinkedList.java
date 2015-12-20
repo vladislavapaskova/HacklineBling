@@ -49,6 +49,7 @@ public class DoublyLinkedList<T> extends LinkedList<T> {
 		return waitlistSize;
 	}
 
+	//Randomly selects a problem from the arraylist
 	public T getRandom()
 	{
 		DLLNode<T> newNode = head;

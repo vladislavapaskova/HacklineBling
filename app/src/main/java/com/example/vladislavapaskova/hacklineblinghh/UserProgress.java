@@ -27,19 +27,25 @@ public class UserProgress {
 		incorrectNum = 0;
 	}
 	
+	//this method will be used when the user swipes left or right to signal a correct/incorrect problem
 	//add the completed problem to the completedList (HashMap)
 	public void addToList( Problem problem ){
+		//put problem into the HashMap according to whether it was starred or not
 		completedList.put( problem.getStarred(), problem );
+		//then see if the user got the problem correct or not
 		if( problem.getCorrect() == true ){
 			correctProblems.add( problem );
+			//also keep track the number of problems corect
 			correctNum++;
 		}
 		else{
 			incorrectProblems.add( problem );
+			//keep track the number of problems wrong
 			incorrectNum++;
 		}
 	}
-	
+
+	//this method will be used to let users know how they are doing 
 	//creates a progress message depending on how many problems user got correct
 	public String generateProgressMsg(){
 		String msg = "";

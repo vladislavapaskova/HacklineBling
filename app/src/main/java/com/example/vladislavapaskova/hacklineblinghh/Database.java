@@ -7,7 +7,20 @@ import java.io.File;
 public class Database {
 	
 	//declare hash table
+    /*no longer needed
 	private Hashtable<String, DoublyLinkedList> database;
+    */
+
+    //declare keys inside the hash table
+    /*no longer needed
+    private String stringsKey; 
+    private String arraysKey; 
+    private String treesKey; 
+    private String stacksKey; 
+    private String heapsKey; 
+    private String linkedlistsKey; 
+    private String queuesKey;
+    */
 	
 	//declare  linked lists
 	public DoublyLinkedList<Problem> stringsList; 
@@ -18,18 +31,9 @@ public class Database {
 	public DoublyLinkedList<Problem> linkedlistsList; 
 	public DoublyLinkedList<Problem> queuesList; 
 	
-	//declare keys inside the hash table
-	private String stringsKey; 
-	private String arraysKey; 
-	private String treesKey; 
-	private String stacksKey; 
-	private String heapsKey; 
-	private String linkedlistsKey; 
-	private String queuesKey;
-
     public Problem problemAtHand;
 	
-	
+    //CONSTRUCTOR
 	public Database(){
 		
 		//initiate the array
@@ -53,7 +57,10 @@ public class Database {
 		linkedlistsKey = "linkedlists";
 		queuesKey = "queues";
 		
+        /* no longer needed
 		makeHashtable();
+        */
+
         problemAtHand = null;
 		
 	}
@@ -72,7 +79,7 @@ public class Database {
 		database.put(queuesKey, queuesList);
 	}
 
-    //function reads in csv and adds it to the hashtable
+    //function reads in csv, turns each problem into a Problem obj, inserts it into a dll
     private void transferCSV( File file ){
         //use reader to read CSV file and retrieve elements
         //put elements into Problem object
@@ -94,7 +101,7 @@ public class Database {
 
                 //create the problem
                 Problem problem = new Problem(que, ans, h1, h2, cat, sourceLink);
-                //insert the problem into the database
+                //insert the problem into the corresponding dll
                 insertProblem(problem);
             }
 
@@ -106,6 +113,8 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    //inserts the problem to the right category
     public void insertProblem(Problem problem)
     {
         switch (problem.getCat())
@@ -134,6 +143,9 @@ public class Database {
         }
 
     }
+
+    //this method returns a random problem under the category selected by the user
+    //case refers to the spinner element selected
     public String retrieve(String str)
     {
         switch (str)
@@ -170,11 +182,13 @@ public class Database {
         return problemAtHand.getQue();
     }
 
+    //returns the answer string
     public String retrieveAnswer()
     {
         return problemAtHand.getAns();
     }
 
+    //returns the hint1 string
     public String retrieveHint1(){
         if( problemAtHand.getH1() == "" )
             return "No hint!";
@@ -182,6 +196,7 @@ public class Database {
             return problemAtHand.getH1();
     }
 
+    //returns the hint2 string
     public String retrieveHint2(){
         if( problemAtHand.getH2() == "" )
             return "No hint!";
@@ -189,6 +204,7 @@ public class Database {
             return problemAtHand.getH1();
     }
 
+    //returns the sourceLink string
     public String retrieveSource(){
         return problemAtHand.getSourceLink();
     }
